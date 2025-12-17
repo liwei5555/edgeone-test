@@ -130,8 +130,8 @@
         let ctx;
         let snake = [{ x: 10, y: 10 }];
         let food = { x: 15, y: 15 };
-        let direction = { x: 0, y: 0 };
-        let nextDirection = { x: 0, y: 0 };
+        let direction = { x: 1, y: 0 }; // 初始向右移动
+        let nextDirection = { x: 1, y: 0 };
         let score = 0;
         let highScore = localStorage.getItem('snakeHighScore') || 0;
         let gameLoop;
@@ -150,8 +150,8 @@
         // 重置游戏
         function resetGame() {
             snake = [{ x: 10, y: 10 }];
-            direction = { x: 0, y: 0 };
-            nextDirection = { x: 0, y: 0 };
+            direction = { x: 1, y: 0 }; // 初始向右移动
+            nextDirection = { x: 1, y: 0 };
             score = 0;
             speed = INITIAL_SPEED;
             document.getElementById('score').textContent = score;
@@ -280,11 +280,18 @@
             // 绘制蛇
             snake.forEach((segment, index) => {
                 if (index === 0) {
-                    ctx.fillStyle = '#4CAF50'; // 蛇头
+                    // 绘制蛇头
+                    ctx.fillStyle = '#4CAF50';
+                    ctx.fillRect(segment.x * GRID_SIZE, segment.y * GRID_SIZE, GRID_SIZE - 2, GRID_SIZE - 2);
+                    // 绘制蛇眼
+                    ctx.fillStyle = '#fff';
+                    ctx.fillRect(segment.x * GRID_SIZE + 5, segment.y * GRID_SIZE + 5, 3, 3);
+                    ctx.fillRect(segment.x * GRID_SIZE + 12, segment.y * GRID_SIZE + 5, 3, 3);
                 } else {
-                    ctx.fillStyle = '#45a049'; // 蛇身
+                    // 绘制蛇身
+                    ctx.fillStyle = '#45a049';
+                    ctx.fillRect(segment.x * GRID_SIZE, segment.y * GRID_SIZE, GRID_SIZE - 2, GRID_SIZE - 2);
                 }
-                ctx.fillRect(segment.x * GRID_SIZE, segment.y * GRID_SIZE, GRID_SIZE - 2, GRID_SIZE - 2);
             });
         }
 
