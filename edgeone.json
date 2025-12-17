@@ -1,0 +1,10 @@
+{
+  "version": "1.0",
+  "projectName": "edgeone-test",
+  "projectType": "static",
+  "zone": "default-pages-zone",
+  "domains": ["aiaiinote-brkdpxaf.edgeone.cool"],
+  "build": {
+    "outputDir": "."
+  }
+}
